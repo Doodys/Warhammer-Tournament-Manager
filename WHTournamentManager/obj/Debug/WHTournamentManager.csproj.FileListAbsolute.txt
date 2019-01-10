@@ -35,3 +35,16 @@ E:\Kody\WHTournamentManager\WHTournamentManager\WHTournamentManager\obj\Debug\WH
 E:\Kody\WHTournamentManager\WHTournamentManager\WHTournamentManager\obj\Debug\WHTournamentManager.csproj.CoreCompileInputs.cache
 E:\Kody\WHTournamentManager\WHTournamentManager\WHTournamentManager\obj\Debug\WHTournamentManager.exe
 E:\Kody\WHTournamentManager\WHTournamentManager\WHTournamentManager\obj\Debug\WHTournamentManager.pdb
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\bin\Debug\WHTournamentManager.exe.config
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\bin\Debug\WHTournamentManager.exe
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\bin\Debug\WHTournamentManager.pdb
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.csprojAssemblyReference.cache
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.Start.resources
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.Form2.resources
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.Form3.resources
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.Form4.resources
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.Properties.Resources.resources
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.csproj.GenerateResource.cache
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.csproj.CoreCompileInputs.cache
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.exe
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.pdb

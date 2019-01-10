@@ -53,6 +53,7 @@
             this.ClientSize = new System.Drawing.Size(189, 240);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form4";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form4";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form3_FormClosing);
             this.Load += new System.EventHandler(this.Form4_Load);

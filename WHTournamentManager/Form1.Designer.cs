@@ -90,6 +90,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Name = "Start";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Start game";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Start_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -21,13 +21,14 @@ namespace WHTournamentManager
         public static string[] _headers = {"ID", "NAME", "SURNAME", "NATION", "POINTS", "TABLE", "ALIVE?"};
         //public static Player oddPlayer;
 
-        public Player(string nam, string surNam, string nat, int id, int points)
+        public Player(string nam, string surNam, string nat, int id, int points, int table)
         {
             Name = nam;
             Surname = surNam;
             Nation = nat;
             playerID = id;
             playersPoints = points;
+            tableID = table;
         }
 
         public Player(string gamNam, int am)

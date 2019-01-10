@@ -35,6 +35,7 @@ namespace WHTournamentManager
                     this.textBox2.Text,
                     this.textBox3.Text,
                     ID,
+                    0,
                     0
                     );
 
