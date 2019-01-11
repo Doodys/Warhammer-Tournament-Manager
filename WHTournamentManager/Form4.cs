@@ -12,8 +12,6 @@ namespace WHTournamentManager
 {
     public partial class Form4 : Form
     {
-        private int p = 0;
-
         public static string[,] _playerFullData = new string[Player.playersAmount, 7];
         public int infoID = 0;
         public string infoName = "";
@@ -31,7 +29,12 @@ namespace WHTournamentManager
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            GenerateTable(Player.playersAmount + 1);
+            GenerateFullTable(Player.playersAmount + 1);
+            GenerateVsTable(Player._headers2.GetLength(0) + 1);
+
+            Form3._pID.Clear();
+            Form3._tables.Clear();
+            Player._players.Clear();
         }
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
@@ -39,7 +42,57 @@ namespace WHTournamentManager
             Application.Exit();
         }
 
-        private void GenerateTable(int rowCount)
+        private void GenerateVsTable(int rowCount)
+        {
+            int columnCount = 3;
+            tableLayoutPanel2.Controls.Clear();
+            tableLayoutPanel2.ColumnStyles.Clear();
+            tableLayoutPanel2.RowStyles.Clear();
+
+            tableLayoutPanel2.ColumnCount = columnCount;
+            tableLayoutPanel2.RowCount = rowCount;
+
+            for (int x = 0; x < columnCount; x++)
+            {
+                tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+                for (int y = 0; y < rowCount; y++)
+                {
+                    if (x == 0) { tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.AutoSize)); }
+                    if (y == 0)
+                    {
+                        Label lb = new Label();
+                        lb.Font = new Font(lb.Font, FontStyle.Bold);
+                        lb.Text = string.Format(Player._headers2[x]);
+                        tableLayoutPanel2.Controls.Add(lb, x, y);
+                    }
+                    else
+                    {
+                        switch (x)
+                        {
+                            case 0:
+                                Label lb1 = new Label();
+                                lb1.Text = Form3._attributes[y - 1, x].ToString();
+                                tableLayoutPanel2.Controls.Add(lb1, x, y);
+                                break;
+                            case 1: 
+                                Label lb2 = new Label();
+                                lb2.Text = Form3._attributes[y - 1, x].ToString();
+                                tableLayoutPanel2.Controls.Add(lb2, x, y);
+                                break;
+                            case 2: 
+                                Label lb3 = new Label();
+                                lb3.Text = Form3._attributes[y - 1, x].ToString();
+                                tableLayoutPanel2.Controls.Add(lb3, x, y);
+                                break;
+                            default: break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void GenerateFullTable(int rowCount)
         {
             int columnCount = 7;
             tableLayoutPanel1.Controls.Clear();
@@ -60,7 +113,7 @@ namespace WHTournamentManager
                     {
                         Label lb = new Label();
                         lb.Font = new Font(lb.Font, FontStyle.Bold);
-                        lb.Text = string.Format(Player._headers[x]);
+                        lb.Text = string.Format(Player._headers1[x]);
                         tableLayoutPanel1.Controls.Add(lb, x, y);
                     }
                     else
@@ -106,7 +159,7 @@ namespace WHTournamentManager
                                 }
                                 else
                                 {
-                                    lb5.Text = 15.ToString();
+                                    lb5.Text = (Player._players[y - 1].playersPoints + 15).ToString();
                                     tableLayoutPanel1.Controls.Add(lb5, x, y);
                                     infoPoints = Player._players[y - 1].playersPoints;
                                     _playerFullData[y - 1, x] = infoPoints.ToString();
@@ -153,11 +206,7 @@ namespace WHTournamentManager
                         }
                     }
                 }                              
-            }
-            Array.Clear(Form3._attributes, 0, Form3._attributes.Length);
-            Form3._pID.Clear();
-            Form3._tables.Clear();
-            Player._players.Clear();
+            }            
         }
     }
 }

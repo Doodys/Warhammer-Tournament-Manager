@@ -19,7 +19,8 @@ namespace WHTournamentManager
         public static int oddPlayerID { get; set; }
 
         public static List<Player> _players = new List<Player>(); //it'll be cleared after creating a game
-        public static string[] _headers = {"ID", "NAME", "SURNAME", "NATION", "POINTS", "TABLE", "ALIVE?"};
+        public static string[] _headers1 = {"ID", "NAME", "SURNAME", "NATION", "POINTS", "TABLE", "ALIVE?"};
+        public static string[] _headers2 = { "TABLE", "ID [1]", "ID [2]" };
 
         public Player(string nam, string surNam, string nat, int id, int points, int table)
         {
