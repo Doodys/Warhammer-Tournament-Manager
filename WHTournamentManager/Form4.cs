@@ -30,7 +30,7 @@ namespace WHTournamentManager
         private void Form4_Load(object sender, EventArgs e)
         {
             GenerateFullTable(Player.playersAmount + 1);
-            GenerateVsTable(Player._headers2.GetLength(0) + 1);
+            GenerateVsTable(Form3._attributes.GetLength(0) + 1);
 
             Form3._pID.Clear();
             Form3._tables.Clear();
@@ -75,12 +75,12 @@ namespace WHTournamentManager
                                 lb1.Text = Form3._attributes[y - 1, x].ToString();
                                 tableLayoutPanel2.Controls.Add(lb1, x, y);
                                 break;
-                            case 1: 
+                            case 1:
                                 Label lb2 = new Label();
                                 lb2.Text = Form3._attributes[y - 1, x].ToString();
                                 tableLayoutPanel2.Controls.Add(lb2, x, y);
                                 break;
-                            case 2: 
+                            case 2:
                                 Label lb3 = new Label();
                                 lb3.Text = Form3._attributes[y - 1, x].ToString();
                                 tableLayoutPanel2.Controls.Add(lb3, x, y);
@@ -123,7 +123,7 @@ namespace WHTournamentManager
                             case 0:
                                 Label lb1 = new Label();
                                 lb1.Text = Player._players[y - 1].playerID.ToString();
-                                tableLayoutPanel1.Controls.Add(lb1, x, y);                        
+                                tableLayoutPanel1.Controls.Add(lb1, x, y);
                                 infoID = Player._players[y - 1].playerID;
                                 _playerFullData[y - 1, x] = infoID.ToString();
                                 break;
@@ -205,8 +205,8 @@ namespace WHTournamentManager
                             default: break;
                         }
                     }
-                }                              
-            }            
+                }
+            }
         }
     }
 }

@@ -48,3 +48,4 @@ E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj
 E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.csproj.CoreCompileInputs.cache
 E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.exe
 E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.pdb
+E:\Kody\WHTournamentManager\Warhammer-Tournament-Manager\WHTournamentManager\obj\Debug\WHTournamentManager.Form5.resources

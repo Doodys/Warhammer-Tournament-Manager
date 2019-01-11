@@ -14,8 +14,8 @@ namespace WHTournamentManager
     {
         private int tID, pID, counter = 0, forFill = 0;
         public static List<int> _tables = new List<int>(); //below
-        public static List<int> _pID = new List<int>(); //below
-        public static int[,] _attributes = new int[(Player.playersAmount / 2), 3]; //all of those 3 tables will be cleared after creating a game
+        public static List<int> _pID = new List<int>(); //those 2 lists will be cleared after creating a game and merging them into _attributes
+        public static int[,] _attributes = new int[(Player.playersAmount / 2), 3]; 
 
         Random rnd = new Random();
 
