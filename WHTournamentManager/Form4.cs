@@ -24,7 +24,7 @@ namespace WHTournamentManager
         public Form4()
         {
             InitializeComponent();
-            Text = Player.gameName;
+            Text = Player.gameName + " - round " + Form5.counter;
         }
 
         private void Form4_Load(object sender, EventArgs e)
@@ -207,6 +207,13 @@ namespace WHTournamentManager
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form5 InitializeData = new Form5();
+            InitializeData.Show();
         }
     }
 }
