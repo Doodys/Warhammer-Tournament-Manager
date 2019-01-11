@@ -13,9 +13,9 @@ namespace WHTournamentManager
     public partial class Form3 : Form
     {
         private int tID, pID, counter = 0, forFill = 0;
-        private List<int> _tables = new List<int>();
-        private List<int> _pID = new List<int>();
-        public static int[,] _attributes = new int[(Player.playersAmount / 2), 3];
+        public static List<int> _tables = new List<int>(); //below
+        public static List<int> _pID = new List<int>(); //below
+        public static int[,] _attributes = new int[(Player.playersAmount / 2), 3]; //all of those 3 tables will be cleared after creating a game
 
         Random rnd = new Random();
 
@@ -46,13 +46,12 @@ namespace WHTournamentManager
                 int plID = rnd.Next(1, Player.playersAmount + 1);
                 _pID.RemoveAt(_pID.IndexOf(plID));
                 Player.oddPlayerID = plID;
-
             }
             while (counter < (Player.playersAmount / 2))
             {
                 Random rnd = new Random();
                 int x = 0;
-            // losowanie tableID + usuwanie z _tables, jeśli wylosuje
+            // draw tableID + delete from _tables, of it draw
             Repeat:
                 int tableID = rnd.Next(1, (Player.playersAmount / 2) + 1);
 
@@ -64,7 +63,7 @@ namespace WHTournamentManager
                 }
                 else { goto Repeat; }
 
-            // losowanie playerID + usuwanie z _pID, jeśli wylosuje
+            // draw playerID + delete from _pID, if it draw
                 for (int i = forFill; i < (forFill + 2); i++)
                 {
                 Repeat2:
@@ -86,6 +85,7 @@ namespace WHTournamentManager
 
         private void TextAnimation()
         {
+            //just aesthetic thing.. BUT VERY BEAUTIFUL, DO NOT DELETE PLOX
             label1.Text = "Creating tables";
             Player.Wait(600);
             label1.Text = "Creating tables .";

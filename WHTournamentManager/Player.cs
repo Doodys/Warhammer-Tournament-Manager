@@ -6,6 +6,7 @@ namespace WHTournamentManager
 {
     internal class Player
     {
+        //those variables kinda go in order of program's flow
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nation { get; set; }
@@ -17,9 +18,8 @@ namespace WHTournamentManager
         public int tableID { get; set; }
         public static int oddPlayerID { get; set; }
 
-        public static List<Player> _players = new List<Player>();
+        public static List<Player> _players = new List<Player>(); //it'll be cleared after creating a game
         public static string[] _headers = {"ID", "NAME", "SURNAME", "NATION", "POINTS", "TABLE", "ALIVE?"};
-        //public static Player oddPlayer;
 
         public Player(string nam, string surNam, string nat, int id, int points, int table)
         {
@@ -45,8 +45,8 @@ namespace WHTournamentManager
 
         public static void Wait(int ms)
         {
-            System.DateTime start = System.DateTime.Now;
-            while ((System.DateTime.Now - start).TotalMilliseconds < ms)
+            DateTime start = DateTime.Now;
+            while ((DateTime.Now - start).TotalMilliseconds < ms)
             {
                 Application.DoEvents();
             }
