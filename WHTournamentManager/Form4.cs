@@ -12,6 +12,8 @@ namespace WHTournamentManager
 {
     public partial class Form4 : Form
     {
+        private int p = 0;
+
         public static string[,] _playerFullData = new string[Player.playersAmount, 7];
         public int infoID = 0;
         public string infoName = "";
@@ -77,21 +79,21 @@ namespace WHTournamentManager
                                 lb2.Text = Player._players[y - 1].Name;
                                 tableLayoutPanel1.Controls.Add(lb2, x, y);
                                 infoName = lb2.Text = Player._players[y - 1].Name;
-                                //_playerFullData[y - 1, x] = infoName;
+                                _playerFullData[y - 1, x] = infoName;
                                 break;
                             case 2:
                                 Label lb3 = new Label();
                                 lb3.Text = Player._players[y - 1].Surname;
                                 tableLayoutPanel1.Controls.Add(lb3, x, y);
                                 infoSurname = Player._players[y - 1].Surname;
-                                //_playerFullData[y - 1, x] = infoSurname;
+                                _playerFullData[y - 1, x] = infoSurname;
                                 break;
                             case 3:
                                 Label lb4 = new Label();
                                 lb4.Text = Player._players[y - 1].Nation;
                                 tableLayoutPanel1.Controls.Add(lb4, x, y);
                                 infoNation = Player._players[y - 1].Nation;
-                                //_playerFullData[y - 1, x] = infoNation;
+                                _playerFullData[y - 1, x] = infoNation;
                                 break;
                             case 4:
                                 Label lb5 = new Label();
@@ -100,14 +102,14 @@ namespace WHTournamentManager
                                     lb5.Text = Player._players[y - 1].playersPoints.ToString();
                                     tableLayoutPanel1.Controls.Add(lb5, x, y);
                                     infoPoints = Player._players[y - 1].playersPoints;
-                                  //  _playerFullData[y - 1, x] = infoPoints.ToString();
+                                    _playerFullData[y - 1, x] = infoPoints.ToString();
                                 }
                                 else
                                 {
                                     lb5.Text = 15.ToString();
                                     tableLayoutPanel1.Controls.Add(lb5, x, y);
                                     infoPoints = Player._players[y - 1].playersPoints;
-                                    //_playerFullData[y - 1, x] = infoPoints.ToString();
+                                    _playerFullData[y - 1, x] = infoPoints.ToString();
                                 }
                                 break;
                             case 5:
@@ -119,14 +121,14 @@ namespace WHTournamentManager
                                         lb6.Text = Form3._attributes[i, 0].ToString();
                                         tableLayoutPanel1.Controls.Add(lb6, x, y);
                                         infoTable = Form3._attributes[i, 0];
-                                      //  _playerFullData[y - 1, x] = infoTable.ToString();
+                                        _playerFullData[y - 1, x] = infoTable.ToString();
                                     }
                                     else if (Form3._attributes[i, 2] == Player._players[y - 1].playerID)
                                     {
                                         lb6.Text = Form3._attributes[i, 0].ToString();
                                         tableLayoutPanel1.Controls.Add(lb6, x, y);
                                         infoTable = Form3._attributes[i, 0];
-                                        //_playerFullData[y - 1, x] = infoTable.ToString();
+                                        _playerFullData[y - 1, x] = infoTable.ToString();
                                     }
                                 }
                                 break;
@@ -137,25 +139,25 @@ namespace WHTournamentManager
                                     lb7.Text = "YES";
                                     tableLayoutPanel1.Controls.Add(lb7, x, y);
                                     infoState = lb7.Text;
-                                    //_playerFullData[y - 1, x] = infoState.ToString();
+                                    _playerFullData[y - 1, x] = infoState.ToString();
                                 }
                                 else
                                 {
                                     lb7.Text = "Odd player";
                                     tableLayoutPanel1.Controls.Add(lb7, x, y);
                                     infoState = lb7.Text;
-                                    //_playerFullData[y - 1, x] = infoState.ToString();
+                                    _playerFullData[y - 1, x] = infoState.ToString();
                                 }
                                 break;
                             default: break;
                         }
                     }
-                }               
-                Array.Clear(Form3._attributes, 0, Form3._attributes.Length);
-                Form3._pID.Clear();
-                Form3._tables.Clear();
-                Player._players.Clear();
+                }                              
             }
+            Array.Clear(Form3._attributes, 0, Form3._attributes.Length);
+            Form3._pID.Clear();
+            Form3._tables.Clear();
+            Player._players.Clear();
         }
     }
 }
