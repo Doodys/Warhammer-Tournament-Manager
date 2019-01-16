@@ -23,11 +23,12 @@ namespace WHTournamentManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string text1 = this.textBox1.Text;
-            string text2 = this.textBox2.Text;
-            string text3 = this.textBox3.Text;
-
-            if (text1 == "" || text2 == "" || text3 == "") { MessageBox.Show("All fields have to be filled with text!"); }
+            if (this.textBox1.Text == "" ||
+                this.textBox2.Text == "" ||
+                this.textBox3.Text == "")
+            {
+                MessageBox.Show("All fields have to be filled with text!");
+            }
             else
             {
                 var newPlayer = new Player(

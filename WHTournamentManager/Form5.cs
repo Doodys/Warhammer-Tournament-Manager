@@ -12,9 +12,12 @@ namespace WHTournamentManager
 {
     public partial class Form5 : Form
     {
-        public static int counter = 1;
+        public static int counterRound = 1;
         public List<string> _state = new List<string>();
         public string state;
+
+        private bool checker = true;
+        private int oddCheck = 1, counterPlayer = 1;
 
         public Form5()
         {
@@ -23,23 +26,34 @@ namespace WHTournamentManager
 
         private void Form5_Load(object sender, EventArgs e)
         {
-            _state.Add(state = "Won");
-            _state.Add(state = "Defeated");
-            label1.Text = Form4._playerFullData[0, 1] + " " + Form4._playerFullData[0, 2];
-            button1.Select();
-            comboBox1.DisplayMember = "state";
-            comboBox1.DataSource = _state;
-            comboBox1.SelectedIndex = 0;
+            eraseTables();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
 
         }
 
         private void Form5_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Form5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { button1.PerformClick(); }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eraseTables()
+        {
+            for(int i = 0; i < Player.playersAmount; i++) { Form4._playerFullData[i, 5] = ""; }
         }
     }
 }

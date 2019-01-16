@@ -24,12 +24,15 @@ namespace WHTournamentManager
         public Form4()
         {
             InitializeComponent();
-            Text = Player.gameName + " - round " + Form5.counter;
+            Text = Player.gameName + " - round " + Form5.counterRound;
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            GenerateFullTable(Player.playersAmount + 1);
+            if (Form5.counterRound.Equals(1))
+            {
+                GenerateFullTable(Player.playersAmount + 1);
+            }
             GenerateVsTable(Form3._attributes.GetLength(0) + 1);
 
             Form3._pID.Clear();
