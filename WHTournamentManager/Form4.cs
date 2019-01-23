@@ -12,7 +12,9 @@ namespace WHTournamentManager
 {
     public partial class Form4 : Form
     {
+        public static List<int> counterList = new List<int>();
         public static string[,] _playerFullData = new string[Player.playersAmount, 7];
+        public static int counterRound = 1, selectedTable;
         public int infoID = 0;
         public string infoName = "";
         public string infoSurname = "";
@@ -24,20 +26,53 @@ namespace WHTournamentManager
         public Form4()
         {
             InitializeComponent();
-            Text = Player.gameName + " - round " + Form5.counterRound;
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            if (Form5.counterRound.Equals(1))
+            Text = Player.gameName + " - Round " + counterRound;
+
+            if (Form5.winners.Count.Equals(0))
+            {
+                for (int i = 0; i < Form3._attributes.GetLength(0); i++) { counterList.Add(Form3._attributes[i, 0]); }
+            }
+
+            counterList.Remove(selectedTable);
+
+            for (int i = 0; i < counterList.Count; i++) { comboBox1.Items.Add(counterList[i]); }
+
+            if (counterRound.Equals(1))
             {
                 GenerateFullTable(Player.playersAmount + 1);
             }
             GenerateVsTable(Form3._attributes.GetLength(0) + 1);
 
-            Form3._pID.Clear();
-            Form3._tables.Clear();
-            Player._players.Clear();
+            if (Form5.winners.Count.Equals(Player.playersAmount / 2)) { button2.Visible = true; }
+            else { button2.Visible = false; }
+
+            if (!Form5.winners.Count.Equals(Player.playersAmount / 2))
+            {
+                button1.Visible = true;
+                comboBox1.Visible = true;
+            }
+            else
+            {
+                button1.Visible = false;
+                comboBox1.Visible = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex > -1 && !comboBox1.Items.Equals(0))
+            {
+                selectedTable = int.Parse(comboBox1.Text);
+
+                this.Hide();
+                Form5 InitializeData = new Form5();
+                InitializeData.Show();
+            }
+            else MessageBox.Show("Select table!");
         }
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
@@ -64,7 +99,12 @@ namespace WHTournamentManager
                     if (x == 0) { tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.AutoSize)); }
                     if (y == 0)
                     {
-                        Label lb = new Label();
+                        Label lb = new Label()
+                        {
+                            AutoSize = false,
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Dock = DockStyle.None
+                        };
                         lb.Font = new Font(lb.Font, FontStyle.Bold);
                         lb.Text = string.Format(Player._headers2[x]);
                         tableLayoutPanel2.Controls.Add(lb, x, y);
@@ -74,18 +114,59 @@ namespace WHTournamentManager
                         switch (x)
                         {
                             case 0:
-                                Label lb1 = new Label();
-                                lb1.Text = Form3._attributes[y - 1, x].ToString();
-                                tableLayoutPanel2.Controls.Add(lb1, x, y);
+                                Label b1 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
+                                b1.Text = Form3._attributes[y - 1, x].ToString();
+                                tableLayoutPanel2.Controls.Add(b1, x, y);
                                 break;
                             case 1:
-                                Label lb2 = new Label();
+                                Label lb2 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 lb2.Text = Form3._attributes[y - 1, x].ToString();
+
+                                for (int i = 0; i < Form5.winners.Count; i++)
+                                {
+                                    if (Form5.winners.Contains(int.Parse(lb2.Text)))
+                                    {
+                                        lb2.BackColor = Color.FromArgb(138, 205, 72);
+                                    }
+                                    else if (Form5.loosers.Contains(int.Parse(lb2.Text)))
+                                    {
+                                        lb2.BackColor = Color.FromArgb(138, 66, 72);
+                                    }
+                                }
+
                                 tableLayoutPanel2.Controls.Add(lb2, x, y);
                                 break;
                             case 2:
-                                Label lb3 = new Label();
+                                Label lb3 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 lb3.Text = Form3._attributes[y - 1, x].ToString();
+
+                                for (int i = 0; i < Form5.winners.Count; i++)
+                                {
+                                    if (Form5.winners.Contains(int.Parse(lb3.Text)))
+                                    {
+                                        lb3.BackColor = Color.FromArgb(138, 205, 72);
+                                    }
+                                    else if (Form5.loosers.Contains(int.Parse(lb3.Text)))
+                                    {
+                                        lb3.BackColor = Color.FromArgb(138, 66, 72);
+                                    }
+                                }
+
                                 tableLayoutPanel2.Controls.Add(lb3, x, y);
                                 break;
                             default: break;
@@ -114,7 +195,12 @@ namespace WHTournamentManager
                     if (x == 0) { tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize)); }
                     if (y == 0)
                     {
-                        Label lb = new Label();
+                        Label lb = new Label()
+                        {
+                            AutoSize = false,
+                            TextAlign = ContentAlignment.MiddleCenter,
+                            Dock = DockStyle.None
+                        };
                         lb.Font = new Font(lb.Font, FontStyle.Bold);
                         lb.Text = string.Format(Player._headers1[x]);
                         tableLayoutPanel1.Controls.Add(lb, x, y);
@@ -124,35 +210,60 @@ namespace WHTournamentManager
                         switch (x)
                         {
                             case 0:
-                                Label lb1 = new Label();
+                                Label lb1 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 lb1.Text = Player._players[y - 1].playerID.ToString();
                                 tableLayoutPanel1.Controls.Add(lb1, x, y);
                                 infoID = Player._players[y - 1].playerID;
                                 _playerFullData[y - 1, x] = infoID.ToString();
                                 break;
                             case 1:
-                                Label lb2 = new Label();
+                                Label lb2 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 lb2.Text = Player._players[y - 1].Name;
                                 tableLayoutPanel1.Controls.Add(lb2, x, y);
                                 infoName = lb2.Text = Player._players[y - 1].Name;
                                 _playerFullData[y - 1, x] = infoName;
                                 break;
                             case 2:
-                                Label lb3 = new Label();
+                                Label lb3 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 lb3.Text = Player._players[y - 1].Surname;
                                 tableLayoutPanel1.Controls.Add(lb3, x, y);
                                 infoSurname = Player._players[y - 1].Surname;
                                 _playerFullData[y - 1, x] = infoSurname;
                                 break;
                             case 3:
-                                Label lb4 = new Label();
+                                Label lb4 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 lb4.Text = Player._players[y - 1].Nation;
                                 tableLayoutPanel1.Controls.Add(lb4, x, y);
                                 infoNation = Player._players[y - 1].Nation;
                                 _playerFullData[y - 1, x] = infoNation;
                                 break;
                             case 4:
-                                Label lb5 = new Label();
+                                Label lb5 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 if (Player._players[y - 1].playerID != Player.oddPlayerID)
                                 {
                                     lb5.Text = Player._players[y - 1].playersPoints.ToString();
@@ -169,7 +280,12 @@ namespace WHTournamentManager
                                 }
                                 break;
                             case 5:
-                                Label lb6 = new Label();
+                                Label lb6 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 for (int i = 0; i < Form3._attributes.GetLength(0); i++)
                                 {
                                     if (Form3._attributes[i, 1] == Player._players[y - 1].playerID)
@@ -189,10 +305,26 @@ namespace WHTournamentManager
                                 }
                                 break;
                             case 6:
-                                Label lb7 = new Label();
+                                Label lb7 = new Label()
+                                {
+                                    AutoSize = false,
+                                    TextAlign = ContentAlignment.MiddleCenter,
+                                    Dock = DockStyle.None
+                                };
                                 if (Player._players[y - 1].playerID != Player.oddPlayerID)
                                 {
-                                    lb7.Text = "YES";
+                                    if (Form5.checkerForm4 == false)
+                                    {
+                                        for (int i = 0; i < _playerFullData.GetLength(0); i++)
+                                        {
+                                            if (Form5.winners.Contains(int.Parse(_playerFullData[y - 1, 0]))) { lb7.Text = "YES"; }
+                                            else if (Form5.loosers.Contains(int.Parse(_playerFullData[y - 1, 0]))) { lb7.Text = "NO"; }
+                                            else if (
+                                                !Form5.winners.Contains(int.Parse(_playerFullData[y - 1, 0])) &&
+                                                !Form5.loosers.Contains(int.Parse(_playerFullData[y - 1, 0]))) { lb7.Text = "YES"; }
+                                        }
+                                    }
+                                    else { lb7.Text = "YES"; }
                                     tableLayoutPanel1.Controls.Add(lb7, x, y);
                                     infoState = lb7.Text;
                                     _playerFullData[y - 1, x] = infoState.ToString();
@@ -210,13 +342,6 @@ namespace WHTournamentManager
                     }
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form5 InitializeData = new Form5();
-            InitializeData.Show();
         }
     }
 }
