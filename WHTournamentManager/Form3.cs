@@ -30,13 +30,13 @@ namespace WHTournamentManager
            
         }
 
-        private void FillLists()
+        public static void FillLists()
         {
             for (int i = 1; i <= (Player.playersAmount / 2); i++) { _tables.Add(i); }
             for (int i = 1; i <= Player.playersAmount; i++) { _pID.Add(i); }
         }
 
-        private void TableLogic()
+        public void TableLogic()
         {
             FillLists();
 

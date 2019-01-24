@@ -14,7 +14,8 @@ namespace WHTournamentManager
     {
         public static List<int> counterList = new List<int>();
         public static string[,] _playerFullData = new string[Player.playersAmount, 7];
-        public static int counterRound = 1, selectedTable;
+        public static string[,] _playerFullDataUpd = new string[Player.playersAmount, 7];
+        public static int counterRound = 1, selectedTable, end = 0, counter = 0, tID;
         public int infoID = 0;
         public string infoName = "";
         public string infoSurname = "";
@@ -73,6 +74,101 @@ namespace WHTournamentManager
                 InitializeData.Show();
             }
             else MessageBox.Show("Select table!");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            counterRound++;
+
+            if (counterRound < 4)
+            {
+                for (int i = 0; i < _playerFullData.GetLength(0); i++)
+                {
+                    if (_playerFullData[i, 6].Equals("YES")) { end++; }
+                }
+            }
+
+            if (end > 2 && counterRound < 4)
+            {
+                List<int> points = new List<int>();
+                points.Clear();
+
+                Player.playersAmount /= 2;
+
+                for (int i = 0; i < _playerFullData.GetLength(0); i++)
+                {
+                    if (_playerFullData[i, 6] == "Odd player")
+                    {
+                        Player.playersAmount++;
+                        _playerFullData[i, 6] = "YES";
+                    }
+                }
+
+                Form5.winners.Clear();
+                Form5.loosers.Clear();
+                Form3._tables.Clear();
+                Form3._pID.Clear();
+
+                if(counterRound == 2)
+                {
+                    for (int i = 0; i < _playerFullData.GetLength(0); i++)
+                    {
+                        for (int j = 0; i < _playerFullData.GetLength(1); j++)
+                        {
+                            if (_playerFullData[i, 6].Equals("YES")) { _playerFullDataUpd[i, j] = _playerFullData[i, j]; }
+                        }
+                    }
+                    Array.Clear(_playerFullData, 0, _playerFullData.Length);
+
+                    for(int i = 0; i < _playerFullDataUpd.GetLength(0); i++) { points.Add(int.Parse(_playerFullDataUpd[i, 4])); }
+                }
+                else if(counterRound == 3)
+                {
+                    for (int i = 0; i < _playerFullDataUpd.GetLength(0); i++)
+                    {
+                        for (int j = 0; i < _playerFullDataUpd.GetLength(1); j++)
+                        {
+                            if (_playerFullDataUpd[i, 6].Equals("YES")) { _playerFullData[i, j] = _playerFullDataUpd[i, j]; }
+                        }
+                    }
+                    Array.Clear(_playerFullDataUpd, 0, _playerFullDataUpd.Length);
+
+                    for (int i = 0; i < _playerFullData.GetLength(0); i++) { points.Add(int.Parse(_playerFullData[i, 4])); }
+                }
+
+                points.Sort();
+
+                Array.Clear(Form3._attributes, 0, Form3._attributes.Length);
+                Form3.FillLists();
+
+                if (Player.playersAmount % 2 != 0)
+                {
+                    Random rnd = new Random();
+                    int plID = rnd.Next(1, Player.playersAmount + 1);
+                    Form3._pID.RemoveAt(Form3._pID.IndexOf(plID));
+                    Player.oddPlayerID = plID;
+                }
+
+                while (counter < (Player.playersAmount / 2))
+                {
+                    Random rnd = new Random();
+                    int x = 0;
+                    // draw tableID + delete from _tables, of it draw
+                    Repeat:
+                    int tableID = rnd.Next(1, (Player.playersAmount / 2) + 1);
+
+                    if (Form3._tables.Contains(tableID))
+                    {
+                        tID = tableID;
+                        Form3._tables.RemoveAt(Form3._tables.IndexOf(tableID));
+                        Form3._attributes[counter, x] = tID;
+                    }
+                    else { goto Repeat; }
+                    counter++;
+                }
+                } else { MessageBox.Show("Thanks for playing!"); }
+
+
         }
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
